@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+import pickle
 from xgboost.sklearn import XGBClassifier
 
 with open('loan_default_predictor.pkl', 'rb') as model_file:
