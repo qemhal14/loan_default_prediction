@@ -4,6 +4,7 @@ import pandas as pd
 from imblearn.pipeline import Pipeline
 import pickle
 from xgboost.sklearn import XGBClassifier
+# from PIL import Image
 
 with open('loan_default_predictor.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
@@ -15,7 +16,9 @@ def predict_default(input_data, threshold=0.15):
     return prob, status
 
 # Streamlit app layout
-st.title("Loan Default Prediction App")
+# logo_image = Image.open('logo.png')
+# st.image(logo_image, width=200)
+st.title("Loan Default Prediction App by QemHaritsk")
 
 # Display choice for single or batch input in the main dashboard
 input_choice = st.radio("Choose Input Method", ('Single Data Input', 'Batch Data Input'))
@@ -54,8 +57,11 @@ if input_choice == 'Single Data Input':
     # Predict button
     if st.button("Predict"):
         prob, status = predict_default(input_data)
-        st.write(f"Probability of Default: {prob[0]:.2f}")
-        st.write(f"Loan Status: {status[0]}")
+        st.markdown(f"<h2 style='font-size:30px;'>Probability of Default: <b>{prob[0]:.2f}</b></h2>", unsafe_allow_html=True)
+        if status[0] == "Default":
+            st.markdown(f"<h2 style='font-size:30px; color:red;'><b>Loan Status: {status[0]}</b></h2>", unsafe_allow_html=True)
+        else:
+            st.markdown(f"<h2 style='font-size:30px; color:green;'><b>Loan Status: {status[0]}</b></h2>", unsafe_allow_html=True)
 
 # Batch Data Input Section
 if input_choice == 'Batch Data Input':
@@ -71,3 +77,10 @@ if input_choice == 'Batch Data Input':
             batch_data['Probability of Default'] = prob
             batch_data['Loan Status'] = status
             st.write("Prediction Results", batch_data)
+
+            # Format each row's loan status result
+            for i in range(len(batch_data)):
+                if status[i] == "Default":
+                    st.markdown(f"<h3 style='color:red;'>Customer {i+1}: Status - Default, Probability: {prob[i]:.2f}</h3>", unsafe_allow_html=True)
+                else:
+                    st.markdown(f"<h3 style='color:green;'>Customer {i+1}: Status - Not Default, Probability: {prob[i]:.2f}</h3>", unsafe_allow_html=True)
