@@ -15,6 +15,9 @@ def predict_default(input_data, threshold=0.15):
     status = np.where(prob >= threshold, "Default", "Not Default")
     return prob, status
 
+def convert_df_to_csv(df):
+    return df.to_csv(index=False).encode('utf-8')
+
 # Streamlit app layout
 # logo_image = Image.open('logo.png')
 # st.image(logo_image, width=200)
