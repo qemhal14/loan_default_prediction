@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-import padas as pd
+import pandas as pd
 from xgboost.sklearn import XGBClassifier
 
 with open('loan_default_predictor.pkl', 'rb') as model_file:
