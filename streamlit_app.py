@@ -32,9 +32,9 @@ if input_choice == 'Single Data Input':
     loan_grade = st.selectbox("Loan Grade", ['A', 'B', 'C', 'D', 'E', 'F', 'G'])
     loan_amnt = st.number_input("Loan Amount", min_value=0, value=10000)
     loan_int_rate = st.number_input("Loan Interest Rate", min_value=0.0, value=5.0)
-    loan_percent_income = st.number_input("Loan Percent Income", min_value=0.0, value=10.0)
     cb_person_default_on_file = st.selectbox("Customer Default on File", ['N', 'Y'])
     cb_person_cred_hist_length = st.number_input("Credit History Length (in years)", min_value=0, value=10)
+    loan_income_ratio = st.number_input("Loan Income Ratio", min_value=0.0, value=10.0)
 
     # Create input data as a DataFrame
     input_data = pd.DataFrame({
@@ -46,9 +46,9 @@ if input_choice == 'Single Data Input':
         'loan_grade': [loan_grade],
         'loan_amnt': [loan_amnt],
         'loan_int_rate': [loan_int_rate],
-        'loan_percent_income': [loan_percent_income],
         'cb_person_default_on_file': [cb_person_default_on_file],
-        'cb_person_cred_hist_length': [cb_person_cred_hist_length]
+        'cb_person_cred_hist_length': [cb_person_cred_hist_length],
+        'loan_income_ratio': [loan_income_ratio]
     })
 
     # Predict button
