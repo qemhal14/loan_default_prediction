@@ -77,3 +77,11 @@ if input_choice == 'Batch Data Input':
             batch_data['Probability of Default'] = prob
             batch_data['Loan Status'] = status
             st.write("Prediction Results", batch_data)
+
+            csv = convert_df_to_csv(batch_data)
+            st.download_button(
+                label="Download Predictions as CSV",
+                data=csv,
+                file_name='predictions.csv',
+                mime='text/csv'
+            )
