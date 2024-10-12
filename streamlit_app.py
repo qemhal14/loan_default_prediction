@@ -20,7 +20,7 @@ def convert_df_to_csv(df):
 
 # Streamlit app layout
 logo_image = Image.open('logo_loan.png')
-st.image(logo_image, width=200)
+st.image(logo_image, width=500)
 st.title("Loan Default Prediction App by QemHaritsk")
 
 # Display choice for single or batch input in the main dashboard
