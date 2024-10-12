@@ -77,10 +77,3 @@ if input_choice == 'Batch Data Input':
             batch_data['Probability of Default'] = prob
             batch_data['Loan Status'] = status
             st.write("Prediction Results", batch_data)
-
-            # Format each row's loan status result
-            for i in range(len(batch_data)):
-                if status[i] == "Default":
-                    st.markdown(f"<h3 style='color:red;'>Customer {i+1}: Status - Default, Probability: {prob[i]:.2f}</h3>", unsafe_allow_html=True)
-                else:
-                    st.markdown(f"<h3 style='color:green;'>Customer {i+1}: Status - Not Default, Probability: {prob[i]:.2f}</h3>", unsafe_allow_html=True)
