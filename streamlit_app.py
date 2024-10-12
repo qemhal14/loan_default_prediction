@@ -4,7 +4,7 @@ import pandas as pd
 from imblearn.pipeline import Pipeline
 import pickle
 from xgboost.sklearn import XGBClassifier
-# from PIL import Image
+from PIL import Image
 
 with open('loan_default_predictor.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
@@ -19,8 +19,8 @@ def convert_df_to_csv(df):
     return df.to_csv(index=False).encode('utf-8')
 
 # Streamlit app layout
-# logo_image = Image.open('logo.png')
-# st.image(logo_image, width=200)
+logo_image = Image.open('logo_loan.png')
+st.image(logo_image, width=200)
 st.title("Loan Default Prediction App by QemHaritsk")
 
 # Display choice for single or batch input in the main dashboard
